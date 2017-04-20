@@ -82,3 +82,5 @@ C:\Users\jorge\Documents\GitHub\APDNotes\APDNotes\bin\EntityFramework.xml
 C:\Users\jorge\Documents\GitHub\APDNotes\APDNotes\bin\EntityFramework.SqlServer.xml
 C:\Users\jorge\Documents\GitHub\APDNotes\APDNotes\bin\Google.Protobuf.xml
 C:\Users\jorge\Documents\GitHub\APDNotes\APDNotes\bin\MySql.Data.xml
+C:\Users\jorge\Documents\GitHub\APDNotes\APDNotes\bin\Newtonsoft.Json.dll
+C:\Users\jorge\Documents\GitHub\APDNotes\APDNotes\bin\Newtonsoft.Json.xml
