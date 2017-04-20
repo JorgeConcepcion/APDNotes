@@ -1,0 +1,29 @@
+﻿
+
+body {
+    padding-top:50px;
+}
+
+
+/********* Layout *************/
+li .small{
+    color:white;
+    font-size:9pt;
+}
+footer{
+    position:center;
+}
+footer p{
+    color:lightslategray;
+    text-align:center;
+}
+
+/********* Welcome ***********/
+
+.jumbotron h1 span{
+   font-size:30pt;
+}
+button.btn-success .btn-letters{
+ color:white;
+ 
+}

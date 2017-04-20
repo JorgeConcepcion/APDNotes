@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 
-namespace ContactWeb.Models
+namespace APDNotes.Model
 {
     class DatabaseManager
     {

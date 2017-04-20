@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Amazon.S3;
 using Amazon.S3.Model;
 
-namespace ContactWeb.Models
+namespace APDNotes.Model
 {
     public class AWSS3Manager
     {

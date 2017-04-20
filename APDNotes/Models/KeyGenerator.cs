@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace ContactWeb.Models
+namespace APDNotes.Model
 {
     static public class KeyGenerator
     {
