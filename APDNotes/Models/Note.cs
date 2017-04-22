@@ -11,6 +11,7 @@ namespace APDNotes.Model
 
     public class Note
     {
+        string client;
         string writer;
         string checker;
         string firstDay;
@@ -18,7 +19,7 @@ namespace APDNotes.Model
         string status;
         string dateSubmited;
 
-        public Note(string writer, string checker, string firstDay, string lastDay, string status, string dateSubmited)
+        public Note(string client,string writer, string checker, string firstDay, string lastDay, string status, string dateSubmited)
         {
             this.Writer = writer;
             this.Checker = checker;
@@ -26,6 +27,7 @@ namespace APDNotes.Model
             this.LastDay = lastDay;
             this.Status = status;
             this.DateSubmited = dateSubmited;
+            this.Client = client;
         }
 
         public string Writer
@@ -57,6 +59,11 @@ namespace APDNotes.Model
         {
             get { return dateSubmited; }
             set { dateSubmited = value; }
+        }
+        public string Client
+        {
+            get { return client; }
+            set { client = value; }
         }
     }
 }

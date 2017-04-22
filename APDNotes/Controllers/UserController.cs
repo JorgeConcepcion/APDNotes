@@ -12,10 +12,10 @@ namespace APDNotes.Controllers
     {
         static List<Note> ANote = new List<Note>
         {
-            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
-            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
-            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
-            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+            new Note( "Bernard","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+            new Note( "Fidel Castro","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+            new Note( "Raulito la loca","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+            new Note( "Esmerejildo","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
 
 
         };
