@@ -1,0 +1,68 @@
+﻿@model IEnumerable<APDNotes.Model.Note>
+
+@{
+    ViewBag.Title = "Writer";
+}
+
+<h2>Hello @ViewBag.Username!!</h2>
+
+<p>
+    @Html.ActionLink("New Note", "", "", new { area = "" }, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+       @*
+    <th>
+        @Html.DisplayNameFor(model => model.Writer)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Checker)
+    </th>
+        *@  
+        <th>
+            @Html.DisplayNameFor(model => model.FirstDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateSubmited)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*
+    <td>
+        @Html.DisplayFor(modelItem => item.Writer)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Checker)
+    </td>
+
+        *@
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastDay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateSubmited)
+        </td>
+        <td>
+            @Html.ActionLink("Download", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Resubmit", "Details", new { /* id=item.PrimaryKey */ }) |
+          @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>

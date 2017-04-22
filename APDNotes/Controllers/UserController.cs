@@ -5,11 +5,22 @@ using System.Web;
 using System.Web.Mvc;
 using APDNotes.Model;
 
+
 namespace APDNotes.Controllers
 {
     public class UserController : Controller
     {
+        static List<Note> ANote = new List<Note>
+        {
+            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+            new Note( "Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
+
+
+        };
         // GET: User
+        [HttpGet]
         public ActionResult Login()
         {
             return View();
@@ -20,9 +31,13 @@ namespace APDNotes.Controllers
             return View();
         }
 
-        public ActionResult Writer()
+        [HttpGet]
+        public ActionResult Writer(List<Note>_Note)
         {
-            return View();
+           
+            _Note = ANote;
+            ViewBag.Username = _Note[0].Writer;
+            return View(_Note);
         }
         [HttpPost]
         public ActionResult Writer(string username)
@@ -30,11 +45,15 @@ namespace APDNotes.Controllers
             
             return View();
         }
-        
-        public ActionResult Checker()
+
+        [HttpGet]
+        public ActionResult Checker(List<Note> _Note)
         {
-            ViewBag.Note = new List<Note>();
-            return View();
+            _Note = ANote;
+
+
+            ViewBag.Username = _Note[0].Checker;
+            return View(_Note);
         }
         [HttpPost]
         public ActionResult Checker(string username)
