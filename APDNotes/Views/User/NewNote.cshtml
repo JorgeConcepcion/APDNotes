@@ -1,0 +1,81 @@
+﻿@model APDNotes.Model.Note
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h2>New Note</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Writer, " Assistant Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Writer, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = @ViewBag.Username } })
+                @Html.ValidationMessageFor(model => model.Writer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Client, " Client Name" , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Client, new { htmlAttributes = new { @class = "form-control", name =" Client Name"} })
+                @Html.ValidationMessageFor(model => model.Client, "", new { @class = "text-danger"})
+            </div>
+        </div>
+@*
+    <div class="form-group">
+        @Html.LabelFor(model => model.Checker, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Checker, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Checker, "", new { @class = "text-danger" })
+        </div>
+    </div>
+*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstDay, " First Day", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.FirstDay, new { htmlAttributes = new { @class = "form-control input-date",
+               type = "date" } })
+                @Html.ValidationMessageFor(model => model.FirstDay, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.LastDay, " Last Day", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.LastDay, new { htmlAttributes = new { @class = "form-control input-date",
+               type = "date" } })
+                @Html.ValidationMessageFor(model => model.LastDay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+@*
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateSubmited, "Date Submitted", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.DateSubmited, new { htmlAttributes = new { @class = "form-control input-date", type = "date" } })
+                @Html.ValidationMessageFor(model => model.DateSubmited, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Writer")
+</div>

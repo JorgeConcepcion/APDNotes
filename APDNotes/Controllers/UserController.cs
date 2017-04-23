@@ -24,12 +24,12 @@ namespace APDNotes.Controllers
         }
 
         [HttpGet]
-        public ActionResult Writer(List<Note>_Note)
+        public ActionResult Writer()
         {
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
             User user = new User();
             user.Username = "Ramon";
-            _Note = db.getWriterNotes(user);
+            List<Note> _Note = db.getWriterNotes(user);
             ViewBag.Username = _Note[0].Writer;
             return View(_Note);
         }
@@ -41,12 +41,12 @@ namespace APDNotes.Controllers
         }
 
         [HttpGet]
-        public ActionResult Checker(List<Note> _Note)
+        public ActionResult Checker()
         {
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
             User user = new User();
             user.Username = "Pedro";
-            _Note = db.getCheckerNotes(user);
+            List<Note> _Note = db.getCheckerNotes(user);
             ViewBag.Username = _Note[0].Checker;
             return View(_Note);
         }
@@ -55,8 +55,23 @@ namespace APDNotes.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult NewNote(string username)
+        {
+            DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
+            User user = new User();
+            user.Username = "Ramon";
+            List<Note> _Note = db.getWriterNotes(user);
+            ViewBag.Username = _Note[0].Writer;
 
-      
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NewNote()
+        {
+            return View();
+        }
+
 
     }
 }
