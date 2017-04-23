@@ -18,7 +18,10 @@
     <th>
         @Html.DisplayNameFor(model => model.Checker)
     </th>
-        *@  
+        *@ 
+        <th>
+            @Html.DisplayNameFor(model => model.Client)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstDay)
         </th>
@@ -45,6 +48,9 @@
     </td>
 
         *@
+        <td>
+            @Html.DisplayFor(modelItem => item.Client)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstDay)
         </td>

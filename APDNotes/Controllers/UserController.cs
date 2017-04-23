@@ -10,15 +10,7 @@ namespace APDNotes.Controllers
 {
     public class UserController : Controller
     {
-        static List<Note> ANote = new List<Note>
-        {
-            new Note( "Bernard","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
-            new Note( "Fidel Castro","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
-            new Note( "Raulito la loca","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
-            new Note( "Esmerejildo","Manuel","Yolo","4/3/2017", "4/5/2017","Submitted","4/3/2017"),
-
-
-        };
+        
         // GET: User
         [HttpGet]
         public ActionResult Login()
@@ -34,8 +26,10 @@ namespace APDNotes.Controllers
         [HttpGet]
         public ActionResult Writer(List<Note>_Note)
         {
-           
-            _Note = ANote;
+            DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
+            User user = new User();
+            user.Username = "Ramon";
+            _Note = db.getWriterNotes(user);
             ViewBag.Username = _Note[0].Writer;
             return View(_Note);
         }
@@ -49,9 +43,10 @@ namespace APDNotes.Controllers
         [HttpGet]
         public ActionResult Checker(List<Note> _Note)
         {
-            _Note = ANote;
-
-
+            DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
+            User user = new User();
+            user.Username = "Pedro";
+            _Note = db.getCheckerNotes(user);
             ViewBag.Username = _Note[0].Checker;
             return View(_Note);
         }

@@ -29,6 +29,7 @@ namespace APDNotes.Model
             this.DateSubmited = dateSubmited;
             this.Client = client;
         }
+        public Note() { }
 
         public string Writer
         {

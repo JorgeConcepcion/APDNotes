@@ -14,12 +14,9 @@ namespace APDNotes.Model
         string position;
         string usercode;
 
-        public User(string username, string password, string position, string usercode)
+        public User()
         {
-            this.Username = username;
-            this.Password = password;
-            this.Position = position;
-            this.Usercode = usercode;
+           
         }
 
 
