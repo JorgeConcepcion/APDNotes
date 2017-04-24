@@ -1,6 +1,9 @@
 ﻿@model APDNotes.Model.Note
+    @{ 
+        ViewBag.Title = "New Notes";
+    }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("NewNote","User", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
@@ -14,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Writer, " Assistant Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Writer, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = @ViewBag.Username } })
+                @Html.EditorFor(model => model.Writer, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", placeholder = @ViewBag.Username, @value = @ViewBag.Username } })
                 @Html.ValidationMessageFor(model => model.Writer, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,52 +28,57 @@
                 @Html.ValidationMessageFor(model => model.Client, "", new { @class = "text-danger"})
             </div>
         </div>
-@*
-    <div class="form-group">
-        @Html.LabelFor(model => model.Checker, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Checker, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Checker, "", new { @class = "text-danger" })
-        </div>
-    </div>
-*@
+
         <div class="form-group">
             @Html.LabelFor(model => model.FirstDay, " First Day", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.FirstDay, new { htmlAttributes = new { @class = "form-control input-date",
                type = "date" } })
                 @Html.ValidationMessageFor(model => model.FirstDay, "", new { @class = "text-danger" })
             </div>
 
             @Html.LabelFor(model => model.LastDay, " Last Day", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.LastDay, new { htmlAttributes = new { @class = "form-control input-date",
                type = "date" } })
                 @Html.ValidationMessageFor(model => model.LastDay, "", new { @class = "text-danger" })
             </div>
         </div>
-@*
-    <div class="form-group">
+
+    <div class="form-group" hidden>
         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
         </div>
     </div>
-*@
-        <div class="form-group">
+
+
+        <div class="form-group" hidden>
             @Html.LabelFor(model => model.DateSubmited, "Date Submitted", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.DateSubmited, new { htmlAttributes = new { @class = "form-control input-date", type = "date" } })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.DateSubmited, new { htmlAttributes = new { @class = "form-control input-date", type = "date", @value = (@DateTime.Today.Month + "/" + @DateTime.Today.Day + "/" + @DateTime.Today.Year) } })
                 @Html.ValidationMessageFor(model => model.DateSubmited, "", new { @class = "text-danger" })
             </div>
         </div>
+        
+        <div class="form-group">
+            <label class="control-label col-md-2 "> Note File  </label>
+            <div class="col-md-8 " style="position:relative;">
+                <a class='btn btn-primary ' href='javascript:;'>
+                    Choose File Path...
+                    <input type="file" style='position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";opacity:0;background-color:transparent;color:transparent;' name="NoteFile" size="40"  onchange='$("#upload-file-info").html($(this).val());'>
+                </a>
+                &nbsp;
+                <span class='label label-info' id="upload-file-info"></span>
+            </div>
+        </div>
+        <br /><br />
 
-      
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default " />
             </div>
         </div>
     </div>

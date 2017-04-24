@@ -277,12 +277,10 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Checker.cshtml" />
     <Content Include="Views\User\Writer.cshtml" />
-    <Content Include="Views\Shared\CheckerNotesInteraction.cshtml" />
-    <Content Include="Views\Shared\WriterNotesInteraction.cshtml" />
     <Content Include="Views\User\NewNote.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

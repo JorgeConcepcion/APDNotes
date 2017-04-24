@@ -10,51 +10,84 @@ namespace APDNotes.Controllers
 {
     public class UserController : Controller
     {
-        
-        // GET: User
+
+        /** Login *******************************************/
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string username)
+        public ActionResult Login(FormCollection Post)
         {
-            return View();
+            string Username = Post["Username"];
+            string Password = Post["Password"];
+
+
+
+            User user = new User();
+
+            /*      if (True)
+                    {
+                        if ()
+                        {
+                            return View(Writer(user));
+                        }
+                        else if ()
+                        {
+                            return View(Checker(user));
+                        }
+                        else
+                        { }
+
+                    }
+                    else
+                    {
+                    return View("please try again");
+                    }
+            */
+            
         }
 
+
+        /** Writer *******************************************/
         [HttpGet]
-        public ActionResult Writer()
+        public ActionResult Writer(User user)
         {
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
-            User user = new User();
+            user = new User();
             user.Username = "Ramon";
             List<Note> _Note = db.getWriterNotes(user);
             ViewBag.Username = _Note[0].Writer;
             return View(_Note);
         }
         [HttpPost]
-        public ActionResult Writer(string username)
+        public ActionResult Writer(FormCollection Post)
         {
             
             return View();
         }
 
+
+        /** Checker ******************************************/
         [HttpGet]
-        public ActionResult Checker()
+        public ActionResult Checker(User user)
         {
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
-            User user = new User();
+            user = new User();
             user.Username = "Pedro";
             List<Note> _Note = db.getCheckerNotes(user);
             ViewBag.Username = _Note[0].Checker;
             return View(_Note);
         }
         [HttpPost]
-        public ActionResult Checker(string username)
+        public ActionResult Checker(FormCollection Post)
         {
             return View();
         }
+
+
+        /** NewNote ******************************************/
         [HttpGet]
         public ActionResult NewNote(string username)
         {
@@ -67,8 +100,11 @@ namespace APDNotes.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult NewNote()
+        public ActionResult NewNote(FormCollection Post)
         {
+            Note _Note = new Note(Post["Client"], Post["Writer"], "", Post["FirstDay"], Post["Last"], "Submitted", Post["DateSubmited"]);
+            string FilePath = Post["NoteFile"];
+
             return View();
         }
 
