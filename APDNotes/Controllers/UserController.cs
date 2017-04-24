@@ -31,21 +31,19 @@ namespace APDNotes.Controllers
                     {
                         if ()
                         {
-                            return View(Writer(user));
+                            return View("Writer(user)");
                         }
                         else if ()
                         {
-                            return View(Checker(user));
+                            return View("Checker(user)");
                         }
                         else
                         { }
 
                     }
-                    else
-                    {
-                    return View("please try again");
-                    }
-            */
+           */      return View("please try again");
+                   
+            
             
         }
 
@@ -58,7 +56,7 @@ namespace APDNotes.Controllers
             user = new User();
             user.Username = "Ramon";
             List<Note> _Note = db.getWriterNotes(user);
-            ViewBag.Username = _Note[0].Writer;
+            ViewBag.Username = user.Username;
             return View(_Note);
         }
         [HttpPost]
@@ -77,7 +75,7 @@ namespace APDNotes.Controllers
             user = new User();
             user.Username = "Pedro";
             List<Note> _Note = db.getCheckerNotes(user);
-            ViewBag.Username = _Note[0].Checker;
+            ViewBag.Username = user.Username;
             return View(_Note);
         }
         [HttpPost]
