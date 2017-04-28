@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using APDNotes.Models;
 
 
-namespace APDNotes.Model
+namespace APDNotes.Models
 {
     class DatabaseManager
     {
@@ -115,6 +116,33 @@ namespace APDNotes.Model
                 notes.Add(note);
             }
             return notes;
+
+        }
+
+        public LoginResult Login(User u)
+        {
+            LoginResult loginResult;
+            string connstring = string.Format("Server=" + this.Server + "; database={0}; UID=" + this.Username + "; password=" + this.Password, this.Database);
+            MySqlConnection connection = new MySqlConnection(connstring);
+            connection.Open();
+            string query = "SELECT EXISTS(SELECT 1 FROM Users WHERE username = '" + u.Username + "' AND PASSWORD='" + u.Password + "')";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            MySqlDataReader reader = cmd.ExecuteReader();
+            reader.Read();
+            if(reader.GetBoolean(0))
+            {
+                query = "SELECT position FROM Users WHERE username='" + u.Username + "'";
+                reader.Close();
+                cmd = new MySqlCommand(query, connection);
+                reader = cmd.ExecuteReader();
+                reader.Read();
+                loginResult = new LoginResult(true, reader.GetString(0));
+            }
+            else
+            {
+                loginResult = new LoginResult(false, "");
+            }
+            return loginResult;
 
         }
 

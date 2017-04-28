@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using APDNotes.Model;
+using APDNotes.Models;
 
 
 namespace APDNotes.Controllers
 {
     public class UserController : Controller
     {
+
 
         /** Login *******************************************/
         [HttpGet]
@@ -20,31 +21,28 @@ namespace APDNotes.Controllers
         [HttpPost]
         public ActionResult Login(FormCollection Post)
         {
-            string Username = Post["Username"];
-            string Password = Post["Password"];
-
-
+            string username = Post["Username"];
+            string password = Post["Password"];
 
             User user = new User();
-
-            /*      if (True)
-                    {
-                        if ()
-                        {
-                            return View("Writer(user)");
-                        }
-                        else if ()
-                        {
-                            return View("Checker(user)");
-                        }
-                        else
-                        { }
-
-                    }
-           */      return View("please try again");
+            user.Username = username;
+            user.Password = password;
+            DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
+            LoginResult loginResult =db.Login(user);
+            if (loginResult.Exist)
+            {
+                
+                if (loginResult.Position == "Analist" || loginResult.Position == "Office Staf")
+                {
+                    return RedirectToAction("Checker", user);   
+                }
+                else
+                {
+                    return RedirectToAction("Writer", user);
+                }
+            }
+            return RedirectToAction("Login");
                    
-            
-            
         }
 
 
@@ -52,17 +50,24 @@ namespace APDNotes.Controllers
         [HttpGet]
         public ActionResult Writer(User user)
         {
+
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
-            user = new User();
-            user.Username = "Ramon";
-            List<Note> _Note = db.getWriterNotes(user);
-            ViewBag.Username = user.Username;
-            return View(_Note);
+            LoginResult loginResult = db.Login(user);
+            if (loginResult.Exist)
+            {
+                List<Note> _Note = db.getWriterNotes(user);
+                ViewBag.Username = user.Username;
+                return View(_Note);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+           
         }
         [HttpPost]
         public ActionResult Writer(FormCollection Post)
         {
-            
             return View();
         }
 
@@ -72,11 +77,17 @@ namespace APDNotes.Controllers
         public ActionResult Checker(User user)
         {
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
-            user = new User();
-            user.Username = "Pedro";
-            List<Note> _Note = db.getCheckerNotes(user);
-            ViewBag.Username = user.Username;
-            return View(_Note);
+            LoginResult loginResult = db.Login(user);
+            if (loginResult.Exist)
+            {
+                List<Note> _Note = db.getCheckerNotes(user);
+                ViewBag.Username = user.Username;
+                return View(_Note);
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         [HttpPost]
         public ActionResult Checker(FormCollection Post)

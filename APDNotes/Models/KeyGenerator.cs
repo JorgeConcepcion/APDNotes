@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 
-namespace APDNotes.Model
+namespace APDNotes.Models
 {
     static public class KeyGenerator
     {
