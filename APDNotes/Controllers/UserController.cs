@@ -102,7 +102,7 @@ namespace APDNotes.Controllers
         {
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
             User user = new User();
-            user.Username = "Ramon";
+            user.Username = username;
             List<Note> _Note = db.getWriterNotes(user);
             ViewBag.Username = _Note[0].Writer;
 
