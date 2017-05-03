@@ -41,11 +41,11 @@ namespace APDNotes.Models
         public void AddNote(Note note)
         {
             string connstring = string.Format("Server=" + this.Server + "; database={0}; UID=" + this.Username + "; password=" + this.Password, this.Database);
-            string query = "INSERT INTO Users(clients,writer,checker,firstDay,lastDay,status,dateSubmited) VALUES('" +note.Client+"','"+ note.Writer + "','" + note.Checker + "','" + note.FirstDay + "','" + note.LastDay + "','"+note.Status+"','"+note.DateSubmited+"')";
+            string query = "INSERT INTO NotesLog(clients,writer,checker,firstDay,lastDay,state,dateSubmited) VALUES('" +note.Client+"','"+ note.Writer + "','" + note.Checker + "','" + note.FirstDay + "','" + note.LastDay + "','"+note.Status+"','"+note.DateSubmited+"')";
             MySqlConnection connection = new MySqlConnection(connstring);
             connection.Open();
             MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.ExecuteNonQuery();
+          cmd.ExecuteNonQuery();
             connection.Close();
         }
         public List<Note> getWriterNotes(User user)

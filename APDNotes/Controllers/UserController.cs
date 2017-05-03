@@ -104,16 +104,17 @@ namespace APDNotes.Controllers
             User user = new User();
             user.Username = username;
             List<Note> _Note = db.getWriterNotes(user);
-            ViewBag.Username = _Note[0].Writer;
+            ViewBag.Username = username;
 
             return View();
         }
         [HttpPost]
         public ActionResult NewNote(FormCollection Post)
         {
-            Note _Note = new Note(Post["Client"], Post["Writer"], "", Post["FirstDay"], Post["Last"], "Submitted", Post["DateSubmited"]);
+            Note _Note = new Note(Post["Client"], Post["Writer"], "", Post["FirstDay"], Post["LastDay"], "Submited", ((DateTime.Today.Year)+"-"+(DateTime.Today.Month)+"-"+(DateTime.Today.Day)) );
             string FilePath = Post["NoteFile"];
-
+            DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
+            db.AddNote(_Note);
             return View();
         }
 
