@@ -107,11 +107,21 @@ namespace APDNotes.Controllers
             User user = new User();
             user.Username = username;
             user.Password = password;
-            List<Note> _Note = db.getWriterNotes(user);
-            ViewBag.Username = username;
-
-            return View();
+            LoginResult loginResult = db.Login(user);
+            if (loginResult.Exist)
+            {
+                ViewBag.Username = username;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
+        
+
+         
+        
         [HttpPost]
         public ActionResult NewNote(FormCollection Post)
         {
@@ -119,7 +129,10 @@ namespace APDNotes.Controllers
             string FilePath = Post["NoteFile"];
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
             db.AddNote(_Note);
-            return View();
+            User user = new User();
+            user.Username = Post["Writer"];
+            user.Password = Post["Password"];
+            return RedirectToAction("Writer",user);
         }
 
 
