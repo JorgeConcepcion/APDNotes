@@ -4,10 +4,10 @@
     ViewBag.Title = "Assistant";
 }
 
-<h2>Hello @ViewBag.Username !</h2>
+<h2>Hello @ViewBag.Username!</h2>
 
 <p>
-    @Html.ActionLink("New Note", "NewNote", "User", new { username = ViewBag.Username}, new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Note", "NewNote", "User", new { username = ViewBag.Username, password = ViewBag.Password }, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>

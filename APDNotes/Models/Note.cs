@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace APDNotes.Models
 
@@ -31,21 +33,25 @@ namespace APDNotes.Models
         }
         public Note() { }
 
+
         public string Writer
         {
             get { return writer; }
             set { writer = value; }
         }
+        
         public string Checker
         {
             get { return checker; }
             set { checker = value; }
         }
+       
         public string FirstDay
         {
             get { return firstDay; }
             set { firstDay = value; }
         }
+    
         public string LastDay
         {
             get { return lastDay; }
@@ -61,6 +67,7 @@ namespace APDNotes.Models
             get { return dateSubmited; }
             set { dateSubmited = value; }
         }
+
         public string Client
         {
             get { return client; }

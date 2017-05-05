@@ -282,6 +282,7 @@
     <Content Include="Views\User\Writer.cshtml" />
     <Content Include="Views\User\NewNote.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Shared\_WriterOptions.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

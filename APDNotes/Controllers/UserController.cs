@@ -56,7 +56,10 @@ namespace APDNotes.Controllers
             if (loginResult.Exist)
             {
                 List<Note> _Note = db.getWriterNotes(user);
+                
                 ViewBag.Username = user.Username;
+                ViewBag.Password = user.Password;
+
                 return View(_Note);
             }
             else
@@ -98,11 +101,12 @@ namespace APDNotes.Controllers
 
         /** NewNote ******************************************/
         [HttpGet]
-        public ActionResult NewNote(string username)
+        public ActionResult NewNote(string username, string password)
         {
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
             User user = new User();
             user.Username = username;
+            user.Password = password;
             List<Note> _Note = db.getWriterNotes(user);
             ViewBag.Username = username;
 
