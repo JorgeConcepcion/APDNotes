@@ -129,6 +129,8 @@ namespace APDNotes.Controllers
             string FilePath = Post["NoteFile"];
             DatabaseManager db = new DatabaseManager("apddatabase.cskqyrkvaybu.us-west-2.rds.amazonaws.com", "erneplopez", "uclv11**", "NoteManager");
             db.AddNote(_Note);
+            AWSS3Manager aws = new AWSS3Manager("apdnotes");
+            aws.UploadFile(Post["Writer"] + "/" + Post["Client"] + "/" + Post["FirstDay"] + "-" + Post["LastDay"], FilePath);
             User user = new User();
             user.Username = Post["Writer"];
             user.Password = Post["Password"];
